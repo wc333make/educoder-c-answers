@@ -1,0 +1,23 @@
+# 临时/会话文件
+_prev_session.jsonl
+_scan_sessions.mjs
+*.jsonl
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.swp
+
+# 构建产物
+*.exe
+*.o
+*.obj
+a.out
+
+# 可能的本地隐私文件（切勿提交）
+.env
+*.cookie
+*.token
+cookies.txt
