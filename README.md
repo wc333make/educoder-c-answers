@@ -63,6 +63,17 @@ educoder-c-answers/
 - 4 道题在公开答案集中本身缺失，仓库未编造答案：见 `docs/INDEX.zh-CN.md` 的“无答案题目”表。
 - 多文件题（如“多文件 C 程序”）需要在平台的文件下拉里**逐个文件切换**再粘贴；部分平台的该下拉控件对自动化点击不响应，建议手工完成这一关。
 
+## 上传与维护（GitHub）
+
+本仓库已发布在 **https://github.com/wc333make/educoder-c-answers**。想在别的机器上复刻同样的上传能力，按 [`docs/github-setup.md`](docs/github-setup.md) 走一遍即可：里面的三条关键结论是「`github.com` 走本地 SOCKS5 代理」「git 必须切到 OpenSSL TLS 后端」「凭据交给 Windows 凭据管理器」。
+
+日常更新：
+
+```powershell
+. .\scripts\gh-env.ps1                 # 一次性设好代理 / TLS 后端
+.\scripts\push.ps1 -Message "docs: xxx" # commit + push
+```
+
 ## 合规与免责
 
 - 仅用于**个人学习与自查**。请遵守所在课程与平台的学术诚信要求。
