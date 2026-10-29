@@ -73,8 +73,16 @@ git ls-remote https://github.com/cli/cli HEAD
 
 ## 四、日常上传
 
+先点源环境脚本（**不要**用「再包一层 gh.ps1」的写法，PowerShell 5.1 会把带双引号的参数重新拆开）：
+
 ```powershell
-# 改完文件后
+. .\scripts\gh-env.ps1      # 设好 ALL_PROXY / git 代理 / openssl
+gh api /user --jq .login    # 之后直接调用 gh、git 即可
+```
+
+改完文件后一键提交推送：
+
+```powershell
 .\scripts\push.ps1 -Message "docs: 更新教程"
 ```
 
@@ -85,6 +93,16 @@ git add -A
 git commit -m "..."
 git push
 ```
+
+> ⚠️ 小坑：`gh api` 的 `--jq` 表达式里**不要写双引号**（如 `'.login + " x"'`），PS 5.1 传参给原生 exe 时会拆开，报 `accepts 1 arg(s), received 3`。需要拼字符串就用 PowerShell 解析：
+>
+> ```powershell
+> $u = gh api /user | ConvertFrom-Json
+> "$($u.login) ($($u.public_repos) repos)"
+> ```
+>
+> `--json` 的多字段参数要整体加引号：`--json 'name,visibility'`，否则逗号会被当成数组。
+
 
 ## 五、只改单个文件（不想 clone/push 时）
 
